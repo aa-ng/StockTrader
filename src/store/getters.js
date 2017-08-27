@@ -13,3 +13,7 @@ export const tabs = state => {
 export const companies = state => {
   return state.companies
 }
+
+export const stocks = state => {
+  return state.stocks
+}

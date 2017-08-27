@@ -14,7 +14,11 @@
     <v-tabs-content v-for="tab in tabs.items" :key="tab.label" :id="'tab-' + tab.label" :style="tabsContentStyles">
       <transition mode="out-in" name="slide" appear>
         <v-container>
-          <component v-if="tab.is" :is="tab.is" :data="tabComponentData(tab.is)"></component>
+          <v-layout row wrap>
+            <v-flex xs12 md6 lg4 v-for="(data, index) in tabComponentData(tab.is)">
+              <component v-if="tab.is" :is="tab.is" :data="data"></component>
+            </v-flex>
+          </v-layout>
         </v-container>
       </transition>
     </v-tabs-content>
@@ -24,6 +28,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import BuyStocks from '../stocks/BuyStocks.vue'
+  import UserStocks from '../stocks/UserStocks.vue'
   import Overview from '../Overview.vue'
 
   export default {
@@ -32,7 +37,8 @@
         'funds',
         'fundsString',
         'tabs',
-        'companies'
+        'companies',
+        'stocks'
       ]),
       tabsContentStyles () {
         return {
@@ -43,15 +49,17 @@
     methods: {
       tabComponentData (is) {
         if (is === 'stocks-overview') {
-          return {}
+          return [1]
         } else if (is === 'stocks-buy-view') {
           return this.companies
-        } else if (is === 'stocks-portfolio') {
+        } else if (is === 'stocks-user-view') {
+          return this.stocks
         }
       }
     },
     components: {
       'stocks-buy-view': BuyStocks,
+      'stocks-user-view': UserStocks,
       'stocks-overview': Overview
     }
   }

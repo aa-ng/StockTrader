@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import * as getters from './getters'
+import * as mutations from './mutations'
+import * as actions from './actions'
 
 Vue.use(Vuex)
 
@@ -12,24 +14,11 @@ export const store = new Vuex.Store({
       items: [
         {
           label: 'Overview',
-          cards: [
-            {
-              title: 'Overview of portfolio',
-              components: [
-                {tag: 'p', text: 'You may save and load your data'},
-                {tag: 'p', text: 'Click on end day to begin a new day'}
-              ]
-            }
-          ],
           is: 'stocks-overview'
         },
         {
           label: 'Portfolio',
-          cards: [
-            {
-              title: 'View your stocks'
-            }
-          ]
+          is: 'stocks-user-view'
         },
         {
           label: 'Buy stocks',
@@ -41,17 +30,19 @@ export const store = new Vuex.Store({
     companies: [
       {
         name: 'BMW',
-        price: 75
+        price: 110
       },
       {
         name: 'Apple',
-        price: 75
+        price: 120
       },
       {
         name: 'Google',
-        price: 75
+        price: 105
       }
     ]
   },
-  getters
+  getters,
+  mutations,
+  actions
 })

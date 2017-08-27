@@ -1,11 +1,11 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs12 md6 style="margin: auto;">
+    <v-flex xs12 style="margin: auto;">
       <v-card>
         <v-container>
           <v-layout row wrap>
             <v-flex xs12>
-              <h3>Overview of your portfolio</h3>
+              <h3>Overview</h3>
               <p>You may save and load your data</p>
               <p>Click end day to start a new day</p>
               <b>Your funds: {{ fundsString }}</b>
