@@ -1,6 +1,10 @@
-# stocktrader
+# Stock Trader app
 
-> A Vue.js project
+[![Stock trader app screenshot](http://alex-ng.com/static/images/projects/webdev/stock-trader/preview.png)](https://alex-stock-trading.herokuapp.com)
+
+> A simple app featuring State management with Vuex, Vue animations using css, Vuetify components and more.
+
+> App is deployed on Heroku free dynos, meaning first load times may be longer than expected
 
 ## Build Setup
 
