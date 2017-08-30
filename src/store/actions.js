@@ -1,15 +1,19 @@
+import stocks from '../data/stocks'
+
 export const addStocks = ({ commit, state }, payload) => {
   if (Array.isArray(payload)) {
     commit('setStocks', (state.stocks.concat(payload)))
   } else {
     for (var stock in state.stocks) {
-      if (state.stocks[stock].stock.name === payload.stock.name) {
+      if (state.stocks[stock].stock.name === payload.stock.name && state.funds >= payload.stock.price) {
         state.stocks[stock].amount = parseInt(state.stocks[stock].amount) + parseInt(payload.amount)
         return
       }
     }
   }
-  commit('setStocks', (state.stocks.push(payload)))
+  if (state.funds >= payload.stock.price) {
+    commit('setStocks', (state.stocks.push(payload)))
+  }
 }
 
 export const removeStocks = ({ commit, state }, payload) => {
@@ -30,17 +34,27 @@ export const addFunds = ({ commit, state }, payload) => {
 }
 
 export const removeFunds = ({ commit, state }, payload) => {
-  if (state.funds - payload > 0) {
+  if (state.funds - payload >= 0) {
     commit('setFunds', state.funds - payload)
+    return true
   }
 }
 
+export const initStocks = ({ commit }) => {
+  commit('setStocks', stocks)
+}
+
 export const buyStocks = ({ dispatch, commit, state }, payload) => {
-  dispatch('removeFunds', payload.stock.price * payload.amount)
-  dispatch('addStocks', payload)
+  if (Number.isInteger(payload.amount) && payload.amount > 0) {
+    dispatch('addStocks', payload)
+    dispatch('removeFunds', payload.stock.price * payload.amount)
+  }
 }
 
 export const sellStocks = ({dispatch, commit, state}, payload) => {
-  dispatch('addFunds', payload.stock.price * payload.amount)
-  dispatch('removeStocks', payload)
+  if (Number.isInteger(payload.amount) && payload.amount > 0) {
+    if (dispatch('addFunds', payload.stock.price * payload.amount)) {
+      dispatch('removeStocks', payload)
+    }
+  }
 }

@@ -9,11 +9,17 @@
         <v-flex xs12>
           <v-text-field
             label="amount"
-            v-model="amount"
+            v-model.number="amount"
+            type="number"
           ></v-text-field>
         </v-flex>
         <v-flex xs12>
-          <v-btn class="accent" dark @click="buyStocks({stock: data, amount: amount})">Buy stocks</v-btn>
+          <v-btn
+            primary
+            dark
+            @click="buyStocks({stock: data, amount: amount})"
+            :disabled="amount <= 0 || !Number.isInteger(amount)"
+          >{{ buyButtonLabel }}</v-btn>
         </v-flex>
       </v-layout>
     </v-container>
@@ -21,7 +27,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   export default {
     data () {
       return {
@@ -33,7 +39,18 @@
         type: [Object, Array]
       }
     },
+    watch: {
+      amount (value) {
+        if (parseInt(value) < 0) {
+          this.amount = 1
+        }
+      }
+    },
     computed: {
+      ...mapGetters(['funds']),
+      buyButtonLabel () {
+        return this.funds >= this.data.price * this.amount ? 'Buy stocks' : 'Insufficient funds'
+      },
       priceStyle () {
         return {
           position: 'absolute',

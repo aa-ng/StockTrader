@@ -15,7 +15,7 @@
       <transition mode="out-in" name="slide" appear>
         <v-container>
           <v-layout row wrap>
-            <v-flex xs12 md6 lg4 v-for="(data, index) in tabComponentData(tab.is)">
+            <v-flex xs12 md6 lg4 v-for="(data, index) in tabComponentData(tab.is)" :key="index">
               <component v-if="tab.is" :is="tab.is" :data="data"></component>
             </v-flex>
           </v-layout>

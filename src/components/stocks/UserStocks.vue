@@ -11,7 +11,8 @@
             <v-flex xs12>
               <v-text-field
                 label="amount"
-                v-model="amount"
+                v-model.number="amount"
+                type="number"
               ></v-text-field>
             </v-flex>
             <v-flex xs12>
@@ -32,6 +33,13 @@
     data () {
       return {
         amount: 1
+      }
+    },
+    watch: {
+      amount (value) {
+        if (parseInt(value) < 0) {
+          this.amount = 1
+        }
       }
     },
     computed: {

@@ -4,6 +4,9 @@ export const setStocks = (state, payload) => {
   }
 }
 
+export const randomStocks = state => {
+}
+
 export const setFunds = (state, payload) => {
   if (isFinite(payload)) {
     state.funds = payload
