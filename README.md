@@ -6,6 +6,10 @@
 
 > App is deployed on Heroku free dynos, meaning first load times may be longer than expected
 
+## Udemy Course
+
+- [link](https://www.udemy.com/vuejs-2-the-complete-guide/learn/v4/overview)
+
 ## Build Setup
 
 ``` bash
