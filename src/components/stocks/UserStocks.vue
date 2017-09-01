@@ -16,7 +16,12 @@
               ></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-btn class="accent" dark @click="sellStocks({stock: data.stock, amount: amount})">Sell stocks</v-btn>
+              <v-btn
+                class="accent"
+                dark
+                @click="sellStocks({stock: data.stock, amount: amount, quantity: data.amount})"
+                :disabled="amount <= 0 || !Number.isInteger(amount)"
+              >{{ sellButtonLabel }}</v-btn>
             </v-flex>
           </v-layout>
           <p :style="priceStyle">${{ data.stock.price }}</p>
@@ -52,6 +57,9 @@
           top: 10 + 'px',
           right: 10 + 'px'
         }
+      },
+      sellButtonLabel () {
+        return this.amount <= this.data.amount ? 'Sell stocks' : 'Amount exceeds your quantity'
       }
     },
     methods: {

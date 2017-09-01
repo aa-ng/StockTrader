@@ -3,7 +3,7 @@ export const funds = state => {
 }
 
 export const fundsString = state => {
-  return '$' + state.funds.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return '$' + (state.funds + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 export const tabs = state => {

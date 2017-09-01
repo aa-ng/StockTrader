@@ -10,6 +10,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     funds: 10000,
+    stocks: [],
     tabs: {
       items: [
         {
@@ -26,7 +27,6 @@ export const store = new Vuex.Store({
         }
       ]
     },
-    stocks: [],
     companies: [
       {
         name: 'BMW',

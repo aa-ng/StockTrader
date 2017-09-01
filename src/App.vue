@@ -13,7 +13,7 @@
 <script>
   import Toolbar from './components/navigation/Toolbar.vue'
   import Tabs from './components/navigation/Tabs.vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     computed: {
@@ -25,6 +25,9 @@
     components: {
       'stocks-toolbar': Toolbar,
       'stocks-tabs': Tabs
+    },
+    methods: {
+      ...mapActions(['initStocks'])
     }
   }
 </script>
