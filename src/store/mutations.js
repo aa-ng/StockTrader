@@ -6,6 +6,9 @@ export const setStocks = (state, payload) => {
 }
 
 export const randomStocks = state => {
+  state.companies.forEach(stock => {
+    stock.price = stock.price * (0.5 + Math.random())
+  })
 }
 
 export const setFunds = (state, payload) => {

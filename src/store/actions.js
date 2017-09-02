@@ -42,6 +42,10 @@ export const initStocks = ({ commit }) => {
   commit('setStocks', stocks)
 }
 
+export const randomizeStocks = ({ commit }) => {
+  commit('randomStocks')
+}
+
 export const buyStocks = ({ dispatch, commit, state }, payload) => {
   if (Number.isInteger(payload.amount) && payload.amount > 0) {
     dispatch('addStocks', payload)

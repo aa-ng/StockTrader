@@ -2,10 +2,6 @@ export const funds = state => {
   return state.funds
 }
 
-export const fundsString = state => {
-  return '$' + (state.funds + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-}
-
 export const tabs = state => {
   return state.tabs
 }

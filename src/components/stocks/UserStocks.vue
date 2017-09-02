@@ -18,13 +18,13 @@
             <v-flex xs12>
               <v-btn
                 class="accent"
-                dark
+                light
                 @click="sellStocks({stock: data.stock, amount: amount, quantity: data.amount})"
                 :disabled="amount <= 0 || !Number.isInteger(amount)"
               >{{ sellButtonLabel }}</v-btn>
             </v-flex>
           </v-layout>
-          <p :style="priceStyle">${{ data.stock.price }}</p>
+          <p :style="priceStyle">{{ data.stock.price | dollars }}</p>
         </v-container>
       </v-card>
     </v-flex>

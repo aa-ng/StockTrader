@@ -8,7 +8,7 @@
               <h3>Overview</h3>
               <p>You may save and load your data</p>
               <p>Click end day to start a new day</p>
-              <b>Your funds: {{ fundsString }}</b>
+              <b>Your funds: {{ funds | dollars }}</b>
             </v-flex>
           </v-layout>
         </v-container>
@@ -22,7 +22,7 @@
   export default {
     computed: {
       ...mapGetters([
-        'fundsString'
+        'funds'
       ])
     }
   }

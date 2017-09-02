@@ -1,7 +1,7 @@
 <template>
   <v-card class="mb-3">
     <v-container>
-      <p :style="priceStyle">${{ data.price }}</p>
+      <p :style="priceStyle">{{ data.price | dollars }}</p>
       <v-layout row wrap>
         <v-flex xs12>
           <h3>{{ data.name }}</h3>
@@ -16,7 +16,7 @@
         <v-flex xs12>
           <v-btn
             primary
-            dark
+            light
             @click="buyStocks({stock: data, amount: amount})"
             :disabled="amount <= 0 || !Number.isInteger(amount)"
           >{{ buyButtonLabel }}</v-btn>
